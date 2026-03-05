@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Debugging Challenge</title>
 
 <link rel="stylesheet" href="style.css">
@@ -13,9 +14,9 @@
 
 <!-- ACCESS PAGE -->
 
-<div id="accessPage" class="centerCard">
+<div id="accessPage" class="card">
 
-<h1 class="glow">DEBUGGING CHALLENGE</h1>
+<h1>DEBUGGING CHALLENGE</h1>
 
 <input type="password" id="accessCode" placeholder="Enter Access Code">
 
@@ -26,20 +27,20 @@
 
 <!-- TEAM PAGE -->
 
-<div id="teamPage" class="centerCard" style="display:none">
+<div id="teamPage" class="card hidden">
 
 <h2>Enter Team Name</h2>
 
 <input type="text" id="teamName" placeholder="Team Name">
 
-<button onclick="startExam()">Start Contest</button>
+<button onclick="startExam()">Start</button>
 
 </div>
 
 
 <!-- EXAM PAGE -->
 
-<div id="examPage">
+<div id="examPage" class="hidden">
 
 <div class="topbar">
 
@@ -63,7 +64,7 @@
 <option value="java">Java</option>
 </select>
 
-<div id="editor" style="height:350px;"></div>
+<div id="editor"></div>
 
 <button id="runBtn" onclick="runCode()">Run Code</button>
 
@@ -94,7 +95,7 @@
 
 <div id="successPage">
 
-<h1>Submission Successful</h1>
+<h1>Submitted Successfully</h1>
 
 </div>
 
