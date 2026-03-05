@@ -5,7 +5,9 @@ let editor
 let questions=[
 
 {
+
 title:"Fix the Compilation Error",
+
 code:`#include<iostream>
 using namespace std;
 
@@ -27,6 +29,7 @@ int b = 3 ;
 cout << a + b;
 return 0;
 }`
+
 }
 
 ]
@@ -35,8 +38,6 @@ let current=0
 let answers=[]
 
 
-/* ACCESS */
-
 function verifyAccess(){
 
 let code=document.getElementById("accessCode").value
@@ -44,24 +45,25 @@ let code=document.getElementById("accessCode").value
 if(code!==access){
 
 alert("Wrong Access Code")
+
 return
 
 }
 
-document.getElementById("accessPage").style.display="none"
-document.getElementById("teamPage").style.display="block"
+document.getElementById("accessPage").classList.add("hidden")
+
+document.getElementById("teamPage").classList.remove("hidden")
 
 }
 
-
-/* START EXAM */
 
 function startExam(){
 
 let team=document.getElementById("teamName").value
 
-document.getElementById("teamPage").style.display="none"
-document.getElementById("examPage").style.display="block"
+document.getElementById("teamPage").classList.add("hidden")
+
+document.getElementById("examPage").classList.remove("hidden")
 
 document.getElementById("teamDisplay").innerText="Team: "+team
 
@@ -73,8 +75,6 @@ startTimer()
 
 }
 
-
-/* MONACO EDITOR */
 
 function loadEditor(){
 
@@ -96,8 +96,6 @@ automaticLayout:true
 }
 
 
-/* SHOW QUESTION */
-
 function showQuestion(){
 
 let q=questions[current]
@@ -106,10 +104,18 @@ document.getElementById("questionTitle").innerText=q.title
 
 document.getElementById("questionCode").innerText=q.code
 
+if(current===questions.length-1){
+
+document.getElementById("submitArea").style.display="block"
+
+}else{
+
+document.getElementById("submitArea").style.display="none"
+
 }
 
+}
 
-/* RUN CODE */
 
 function runCode(){
 
@@ -118,6 +124,7 @@ let code=editor.getValue().trim()
 if(code===""){
 
 document.getElementById("outputBox").innerText="Error: No code written"
+
 return
 
 }
@@ -128,8 +135,7 @@ if(code.replace(/\s/g,'')===correct.replace(/\s/g,'')){
 
 document.getElementById("outputBox").innerText="Program executed successfully\nOutput:\n8"
 
-}
-else{
+}else{
 
 document.getElementById("outputBox").innerText="Compilation Error at line 5: expected ';'"
 
@@ -138,16 +144,12 @@ document.getElementById("outputBox").innerText="Compilation Error at line 5: exp
 }
 
 
-/* SAVE */
-
 function saveCode(){
 
 answers[current]=editor.getValue()
 
 }
 
-
-/* NAVIGATION */
 
 function nextQuestion(){
 
@@ -156,11 +158,13 @@ saveCode()
 if(current<questions.length-1){
 
 current++
+
 showQuestion()
 
 }
 
 }
+
 
 function prevQuestion(){
 
@@ -169,6 +173,7 @@ saveCode()
 if(current>0){
 
 current--
+
 showQuestion()
 
 }
@@ -176,11 +181,9 @@ showQuestion()
 }
 
 
-/* SUBMIT */
-
 function submitExam(){
 
-if(!confirm("Submit your solutions?")) return
+if(!confirm("Submit your solution?")) return
 
 document.getElementById("examPage").style.display="none"
 
@@ -189,8 +192,6 @@ document.getElementById("successPage").style.display="block"
 }
 
 
-/* TIMER */
-
 function startTimer(){
 
 let time=3600
@@ -198,13 +199,18 @@ let time=3600
 setInterval(function(){
 
 let m=Math.floor(time/60)
+
 let s=time%60
 
 document.getElementById("timer").innerText=m+":"+("0"+s).slice(-2)
 
 time--
 
-if(time<0) submitExam()
+if(time<0){
+
+submitExam()
+
+}
 
 },1000)
 
