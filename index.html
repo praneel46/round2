@@ -1,15 +1,123 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
-<title>Debugging Round</title>
+<title>Technical Debugging Round</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+padding:0;
+text-align:center;
+color:white;
+
+/* animated gradient background */
+
+background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1e3c72);
+background-size:400% 400%;
+animation:gradientBG 10s ease infinite;
+
+}
+
+@keyframes gradientBG{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+.login-container{
+
+margin-top:120px;
+width:350px;
+padding:30px;
+border-radius:12px;
+
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(10px);
+
+margin-left:auto;
+margin-right:auto;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+
+}
+
+input{
+
+padding:10px;
+width:80%;
+margin-top:10px;
+border-radius:5px;
+border:none;
+
+}
+
+button{
+
+padding:12px 25px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+background:#007bff;
+color:white;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#0056b3;
+
+}
+
+#setPage{
+
+display:none;
+margin-top:100px;
+
+}
+
+.set-buttons button{
+
+margin:15px;
+font-size:18px;
+
+}
+
+.questions{
+
+display:none;
+background:white;
+color:black;
+width:65%;
+margin:40px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+
+}
+
+pre{
+
+background:#111;
+color:#00ff88;
+padding:15px;
+border-radius:6px;
+text-align:left;
+
+}
+
+</style>
 
 </head>
 
 <body>
+
 
 <div class="login-container">
 
@@ -17,7 +125,9 @@
 
 <p>Enter Access Code</p>
 
-<input type="password" id="code" placeholder="Enter access code">
+<input type="password" id="code" placeholder="Enter Code">
+
+<br>
 
 <button onclick="checkCode()">Enter</button>
 
@@ -25,7 +135,7 @@
 
 
 
-<div class="set-container" id="setPage">
+<div id="setPage">
 
 <h2>Select Your Assigned Set</h2>
 
@@ -45,7 +155,7 @@
 
 <h2>Set A</h2>
 
-<h3>Q1. Find the error</h3>
+<h3>Q1. Find the Error</h3>
 
 <pre>
 int a = 5;
@@ -78,7 +188,7 @@ cout<<arr[i];
 
 <h2>Set B</h2>
 
-<h3>Q1. Find the error</h3>
+<h3>Q1. Find the Error</h3>
 
 <pre>
 int a=10,b=0;
@@ -110,7 +220,7 @@ cout<<"Hello";
 
 <h2>Set C</h2>
 
-<h3>Q1. Find the error</h3>
+<h3>Q1. Find the Error</h3>
 
 <pre>
 int arr[2]={1,2,3};
@@ -137,7 +247,40 @@ cout<<x;
 
 
 
-<script src="script.js"></script>
+<script>
+
+function checkCode(){
+
+var code=document.getElementById("code").value;
+
+if(code==="debug123"){
+
+document.querySelector(".login-container").style.display="none";
+document.getElementById("setPage").style.display="block";
+
+}
+
+else{
+
+alert("Wrong Access Code");
+
+}
+
+}
+
+
+
+function showSet(set){
+
+document.getElementById("setA").style.display="none";
+document.getElementById("setB").style.display="none";
+document.getElementById("setC").style.display="none";
+
+document.getElementById("set"+set).style.display="block";
+
+}
+
+</script>
 
 </body>
 </html>
