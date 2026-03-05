@@ -1,13 +1,13 @@
 body{
 margin:0;
-font-family:Consolas, monospace;
+font-family:Consolas,monospace;
 background:#0f172a;
-color:#e2e8f0;
+color:white;
 }
 
-/* LOGIN */
+/* LOGIN CARDS */
 
-.login-card{
+.card{
 width:350px;
 margin:120px auto;
 background:#111827;
@@ -21,15 +21,7 @@ input{
 width:90%;
 padding:10px;
 margin:10px;
-border-radius:5px;
 border:none;
-}
-
-button{
-padding:10px 20px;
-border:none;
-border-radius:5px;
-cursor:pointer;
 }
 
 /* TOPBAR */
@@ -37,20 +29,14 @@ cursor:pointer;
 .topbar{
 display:flex;
 justify-content:space-between;
-align-items:center;
-background:#020617;
 padding:15px;
+background:#020617;
 border-bottom:2px solid #00ff88;
 }
 
 #timer{
-font-size:20px;
 color:#00ff88;
-font-weight:bold;
-}
-
-#progress{
-color:#38bdf8;
+font-size:20px;
 }
 
 /* QUESTION AREA */
@@ -64,38 +50,56 @@ padding:20px;
 background:#020617;
 padding:20px;
 border-radius:8px;
-margin-top:20px;
 }
 
 pre{
 background:#111827;
 padding:15px;
 color:#00ff88;
-border-radius:6px;
 }
 
-/* CODE EDITOR */
+/* EDITOR */
+
+.editor-container{
+display:flex;
+background:#0f172a;
+border:1px solid #1e293b;
+margin-top:10px;
+}
+
+#lineNumbers{
+background:#020617;
+padding:10px;
+color:#64748b;
+text-align:right;
+}
 
 textarea{
 width:100%;
 height:220px;
 background:#0f172a;
 color:#00ff88;
-border:1px solid #1e293b;
-border-radius:6px;
+border:none;
+outline:none;
 padding:10px;
-font-family:Consolas;
-margin-top:10px;
+resize:none;
 }
 
-/* RUN BUTTON */
+/* BUTTONS */
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
 
 #runBtn{
-margin-top:10px;
 background:#00ff88;
 color:black;
 font-weight:bold;
 box-shadow:0 0 10px #00ff88;
+margin-top:10px;
 }
 
 #runBtn:hover{
@@ -110,11 +114,16 @@ color:#00ff00;
 padding:15px;
 margin-top:10px;
 border-radius:6px;
-font-family:monospace;
 min-height:70px;
 }
 
 /* NAVIGATION */
+
+.navNumbers button{
+margin:5px;
+background:#1e293b;
+color:white;
+}
 
 .navButtons{
 margin-top:20px;
@@ -126,16 +135,10 @@ background:#1e293b;
 color:white;
 }
 
-#submitArea{
-margin-top:20px;
-}
-
-/* SUCCESS PAGE */
-
 #successPage{
 display:none;
 text-align:center;
 margin-top:150px;
-font-size:30px;
 color:#00ff88;
+font-size:30px;
 }
