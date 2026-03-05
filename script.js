@@ -1,50 +1,51 @@
 const access="debug123"
 
+let editor
+
 let questions=[
+
 {
-title:"Fix the Error",
-code:`1: int a=5;
-2: if(a=10)
-3: cout<<"True";`,
-error:"Compilation Error: use '==' instead of '='",
-line:2
-},
+title:"Fix the Compilation Error",
+code:`#include<iostream>
+using namespace std;
+
+int main()
 {
-title:"Array Error",
-code:`1: int arr[3]={1,2,3};
-2: for(int i=0;i<=3;i++)
-3: cout<<arr[i];`,
-error:"Runtime Error: array index out of bounds",
-line:2
-},
+int a = 5;
+int b = 3
+cout << a + b;
+return 0;
+}`,
+
+answer:`#include<iostream>
+using namespace std;
+
+int main()
 {
-title:"Division Error",
-code:`1: int a=10,b=0;
-2: cout<<a/b;`,
-error:"Runtime Error: division by zero",
-line:2
-},
-{
-title:"Character Loop",
-code:`1: char ch='A';
-2: for(int i=0;i<3;i++)
-3: cout<<ch++;`,
-output:"Output:\nABC"
+int a = 5;
+int b = 3 ;
+cout << a + b;
+return 0;
+}`
 }
+
 ]
 
-let selected=[]
-let answers=["","",""]
 let current=0
+let answers=[]
 
+
+/* ACCESS */
 
 function verifyAccess(){
 
 let code=document.getElementById("accessCode").value
 
 if(code!==access){
+
 alert("Wrong Access Code")
 return
+
 }
 
 document.getElementById("accessPage").style.display="none"
@@ -52,6 +53,8 @@ document.getElementById("teamPage").style.display="block"
 
 }
 
+
+/* START EXAM */
 
 function startExam(){
 
@@ -62,86 +65,131 @@ document.getElementById("examPage").style.display="block"
 
 document.getElementById("teamDisplay").innerText="Team: "+team
 
-selected=questions.sort(()=>0.5-Math.random()).slice(0,3)
+loadEditor()
 
 showQuestion()
 
 startTimer()
 
-autoSave()
+}
+
+
+/* MONACO EDITOR */
+
+function loadEditor(){
+
+require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
+
+require(["vs/editor/editor.main"], function () {
+
+editor = monaco.editor.create(document.getElementById('editor'), {
+
+value:"",
+language:"cpp",
+theme:"vs-dark",
+automaticLayout:true
+
+});
+
+});
 
 }
 
+
+/* SHOW QUESTION */
 
 function showQuestion(){
 
-let q=selected[current]
+let q=questions[current]
 
 document.getElementById("questionTitle").innerText=q.title
+
 document.getElementById("questionCode").innerText=q.code
-document.getElementById("editor").value=answers[current]
-
-document.getElementById("progress").innerText="Question "+(current+1)+" / 3"
-
-updateLineNumbers()
 
 }
 
+
+/* RUN CODE */
 
 function runCode(){
 
-let code=document.getElementById("editor").value.trim()
+let code=editor.getValue().trim()
 
 if(code===""){
+
 document.getElementById("outputBox").innerText="Error: No code written"
 return
+
 }
 
-let q=selected[current]
+let correct=questions[current].answer.trim()
 
-if(q.error){
-document.getElementById("outputBox").innerText=q.error+" at line "+q.line
+if(code.replace(/\s/g,'')===correct.replace(/\s/g,'')){
+
+document.getElementById("outputBox").innerText="Program executed successfully\nOutput:\n8"
+
 }
 else{
-document.getElementById("outputBox").innerText=q.output
-}
+
+document.getElementById("outputBox").innerText="Compilation Error at line 5: expected ';'"
 
 }
 
+}
+
+
+/* SAVE */
 
 function saveCode(){
-answers[current]=document.getElementById("editor").value
+
+answers[current]=editor.getValue()
+
 }
 
+
+/* NAVIGATION */
 
 function nextQuestion(){
+
 saveCode()
-if(current<2){current++;showQuestion()}
+
+if(current<questions.length-1){
+
+current++
+showQuestion()
+
 }
 
+}
 
 function prevQuestion(){
-saveCode()
-if(current>0){current--;showQuestion()}
-}
 
-
-function goToQuestion(n){
 saveCode()
-current=n
+
+if(current>0){
+
+current--
 showQuestion()
+
 }
 
+}
+
+
+/* SUBMIT */
 
 function submitExam(){
 
-if(!confirm("Are you sure you want to submit?")) return
+if(!confirm("Submit your solutions?")) return
 
 document.getElementById("examPage").style.display="none"
+
 document.getElementById("successPage").style.display="block"
 
 }
 
+
+/* TIMER */
 
 function startTimer(){
 
@@ -159,70 +207,5 @@ time--
 if(time<0) submitExam()
 
 },1000)
-
-}
-
-
-/* LINE NUMBERS */
-
-function updateLineNumbers(){
-
-let editor=document.getElementById("editor")
-
-let lines=editor.value.split("\n").length
-
-let numbers=""
-
-for(let i=1;i<=lines;i++) numbers+=i+"<br>"
-
-document.getElementById("lineNumbers").innerHTML=numbers
-
-}
-
-document.getElementById("editor").addEventListener("input",updateLineNumbers)
-
-
-/* AUTO SAVE */
-
-function autoSave(){
-setInterval(function(){saveCode()},5000)
-}
-
-
-/* DISABLE COPY PASTE */
-
-document.addEventListener("copy",e=>e.preventDefault())
-document.addEventListener("paste",e=>e.preventDefault())
-
-
-/* PAGE REFRESH WARNING */
-
-window.onbeforeunload=function(){
-return "Are you sure you want to leave?"
-}
-
-
-/* TAB SWITCH WARNING */
-
-document.addEventListener("visibilitychange",function(){
-
-if(document.hidden){
-alert("Tab switch detected!")
-}
-
-})
-
-
-/* FULLSCREEN EDITOR */
-
-function toggleFullscreen(){
-
-let editor=document.getElementById("editor")
-
-if(!document.fullscreenElement){
-editor.requestFullscreen()
-}else{
-document.exitFullscreen()
-}
 
 }
