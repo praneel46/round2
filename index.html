@@ -13,51 +13,38 @@ padding:0;
 text-align:center;
 color:white;
 
-/* animated gradient background */
-
 background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1e3c72);
 background-size:400% 400%;
 animation:gradientBG 10s ease infinite;
-
 }
 
 @keyframes gradientBG{
-
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
-
 }
 
 .login-container{
-
 margin-top:120px;
 width:350px;
 padding:30px;
 border-radius:12px;
-
 background: rgba(255,255,255,0.15);
 backdrop-filter: blur(10px);
-
 margin-left:auto;
 margin-right:auto;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
-
 }
 
 input{
-
 padding:10px;
 width:80%;
 margin-top:10px;
 border-radius:5px;
 border:none;
-
 }
 
 button{
-
 padding:12px 25px;
 margin-top:15px;
 border:none;
@@ -66,31 +53,23 @@ background:#007bff;
 color:white;
 font-size:16px;
 cursor:pointer;
-
 }
 
 button:hover{
-
 background:#0056b3;
-
 }
 
 #setPage{
-
 display:none;
 margin-top:100px;
-
 }
 
 .set-buttons button{
-
 margin:15px;
 font-size:18px;
-
 }
 
 .questions{
-
 display:none;
 background:white;
 color:black;
@@ -99,17 +78,31 @@ margin:40px auto;
 padding:30px;
 border-radius:10px;
 box-shadow:0 5px 20px rgba(0,0,0,0.3);
+text-align:left;
+}
 
+/* NEW QUESTION BOX STYLE */
+
+.question-box{
+background:#f4f4f4;
+padding:15px;
+border-radius:8px;
+margin-top:25px;
+border-left:5px solid #007bff;
+}
+
+.question-box h3{
+margin-bottom:10px;
+color:#333;
 }
 
 pre{
-
 background:#111;
 color:#00ff88;
 padding:15px;
 border-radius:6px;
 text-align:left;
-
+overflow-x:auto;
 }
 
 </style>
@@ -155,30 +148,33 @@ text-align:left;
 
 <h2>Set A</h2>
 
+<div class="question-box">
 <h3>Q1. Find the Error</h3>
-
 <pre>
 int a = 5;
 if(a = 10)
 cout<<"True";
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q2. Predict Output</h3>
-
 <pre>
 for(int i=1;i<=5;i--)
 {
 cout<<i;
 }
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q3. Debug Code</h3>
-
 <pre>
 int arr[3]={1,2,3};
 for(int i=0;i<=3;i++)
 cout<<arr[i];
 </pre>
+</div>
 
 </div>
 
@@ -188,29 +184,32 @@ cout<<arr[i];
 
 <h2>Set B</h2>
 
+<div class="question-box">
 <h3>Q1. Find the Error</h3>
-
 <pre>
 int a=10,b=0;
 cout<<a/b;
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q2. Predict Output</h3>
-
 <pre>
 char ch='A';
 for(int i=0;i<3;i++)
 cout<<ch++;
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q3. Debug Code</h3>
-
 <pre>
 while(1<5)
 {
 cout<<"Hello";
 }
 </pre>
+</div>
 
 </div>
 
@@ -220,28 +219,31 @@ cout<<"Hello";
 
 <h2>Set C</h2>
 
+<div class="question-box">
 <h3>Q1. Find the Error</h3>
-
 <pre>
 int arr[2]={1,2,3};
 cout<<arr[2];
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q2. Predict Output</h3>
-
 <pre>
 int i=1;
 do{
 cout<<i;
 }while(i>5);
 </pre>
+</div>
 
+<div class="question-box">
 <h3>Q3. Debug Code</h3>
-
 <pre>
 int x;
 cout<<x;
 </pre>
+</div>
 
 </div>
 
@@ -254,21 +256,14 @@ function checkCode(){
 var code=document.getElementById("code").value;
 
 if(code==="debug123"){
-
 document.querySelector(".login-container").style.display="none";
 document.getElementById("setPage").style.display="block";
-
 }
-
 else{
-
 alert("Wrong Access Code");
-
 }
 
 }
-
-
 
 function showSet(set){
 
