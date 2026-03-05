@@ -7,11 +7,23 @@
 
 <body>
 
-<div id="loginPage" class="login-card">
+<!-- ACCESS CODE PAGE -->
 
+<div id="accessPage" class="card">
 <h1>Debugging Challenge</h1>
 
-<input type="password" id="accessCode" placeholder="Access Code">
+<input type="password" id="accessCode" placeholder="Enter Access Code">
+
+<button onclick="verifyAccess()">Continue</button>
+
+</div>
+
+
+<!-- TEAM NAME PAGE -->
+
+<div id="teamPage" class="card" style="display:none">
+
+<h2>Enter Team Name</h2>
 
 <input type="text" id="teamName" placeholder="Team Name">
 
@@ -19,6 +31,8 @@
 
 </div>
 
+
+<!-- EXAM PAGE -->
 
 <div id="examPage">
 
@@ -33,17 +47,45 @@
 </div>
 
 
+
 <div class="questionBox">
 
 <h2 id="questionTitle"></h2>
 
 <pre id="questionCode"></pre>
 
-<textarea id="editor" placeholder="// Write your code here"></textarea>
+
+<select id="language">
+<option>C</option>
+<option>C++</option>
+<option>Python</option>
+<option>Java</option>
+</select>
+
+
+<div class="editor-container">
+
+<div id="lineNumbers"></div>
+
+<textarea id="editor" spellcheck="false"></textarea>
+
+</div>
+
+
+<button onclick="toggleFullscreen()">Full Screen</button>
 
 <button id="runBtn" onclick="runCode()">Run Code</button>
 
-<div id="outputBox">Output will appear here...</div>
+<div id="outputBox">Terminal output...</div>
+
+</div>
+
+
+<div class="navNumbers">
+
+<button onclick="goToQuestion(0)">1</button>
+<button onclick="goToQuestion(1)">2</button>
+<button onclick="goToQuestion(2)">3</button>
 
 </div>
 
@@ -58,6 +100,7 @@
 
 </div>
 
+
 <div id="submitArea">
 
 <button onclick="submitExam()">Submit</button>
@@ -65,6 +108,7 @@
 </div>
 
 </div>
+
 
 
 <div id="successPage">
