@@ -1,126 +1,105 @@
-let editor
+<!DOCTYPE html>
+<html>
+<head>
+<title>Debugging Challenge</title>
 
-let current=0
+<link rel="stylesheet" href="style.css">
 
-const questions=[
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
 
-{
-title:"Fix Missing Semicolon",
-desc:"The program should print number 5. Fix the compilation error.",
-code:`#include<iostream>
-using namespace std;
+</head>
 
-int main(){
-int a=5
-cout<<a;
-}`,
-answer:"5"
-},
+<body>
 
-{
-title:"Fix Python Indentation",
-desc:"Correct the indentation error.",
-code:`a=5
-if a==5:
-print("YES")`,
-answer:"YES"
-}
+<!-- ACCESS PAGE -->
 
-]
+<div id="accessPage" class="centerCard">
 
-function initEditor(){
+<h1 class="glow">DEBUGGING CHALLENGE</h1>
 
-require.config({
-paths:{
-vs:'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs'
-}
-})
+<input type="password" id="accessCode" placeholder="Enter Access Code">
 
-require(["vs/editor/editor.main"],function(){
+<button onclick="verifyAccess()">ENTER</button>
 
-editor=monaco.editor.create(document.getElementById("editor"),{
+</div>
 
-value:"",
-language:"cpp",
-theme:"vs-dark",
-fontSize:14
 
-})
+<!-- TEAM PAGE -->
 
-})
+<div id="teamPage" class="centerCard" style="display:none">
 
-}
+<h2>Enter Team Name</h2>
 
-function showQuestion(){
+<input type="text" id="teamName" placeholder="Team Name">
 
-let q=questions[current]
+<button onclick="startExam()">Start Contest</button>
 
-document.getElementById("qTitle").innerText=q.title
-document.getElementById("qDesc").innerText=q.desc
-document.getElementById("qCode").innerText=q.code
+</div>
 
-}
 
-function nextQ(){
+<!-- EXAM PAGE -->
 
-if(current<questions.length-1){
-current++
-showQuestion()
-}
+<div id="examPage">
 
-}
+<div class="topbar">
 
-function prevQ(){
+<div id="teamDisplay"></div>
 
-if(current>0){
-current--
-showQuestion()
-}
+<div id="timer">60:00</div>
 
-}
+</div>
 
-async function runCode(){
 
-let code=editor.getValue()
+<div class="questionBox">
 
-let lang=document.getElementById("language").value
+<h2 id="questionTitle"></h2>
 
-document.getElementById("output").innerText="Running..."
+<pre id="questionCode"></pre>
 
-let response=await fetch("https://emkc.org/api/v2/piston/execute",{
+<select id="language">
+<option value="cpp">C++</option>
+<option value="c">C</option>
+<option value="python">Python</option>
+<option value="java">Java</option>
+</select>
 
-method:"POST",
+<div id="editor" style="height:350px;"></div>
 
-headers:{
-"Content-Type":"application/json"
-},
+<button id="runBtn" onclick="runCode()">Run Code</button>
 
-body:JSON.stringify({
+<div id="outputBox">Terminal Output</div>
 
-language:lang,
-version:"10.2.0",
-files:[{content:code}]
+</div>
 
-})
 
-})
+<div class="navButtons">
 
-let result=await response.json()
+<button onclick="prevQuestion()">Previous</button>
 
-let output=result.run.stdout || result.run.stderr
+<button onclick="saveCode()">Save</button>
 
-document.getElementById("output").innerText=output
+<button onclick="nextQuestion()">Next</button>
 
-}
+</div>
 
-window.onload=function(){
 
-initEditor()
+<div id="submitArea">
 
-showQuestion()
+<button onclick="submitExam()">Submit</button>
 
-}
-window.addEventListener("load", function() {
-    initEditor();
-    showQuestion();
-});
+</div>
+
+</div>
+
+
+<div id="successPage">
+
+<h1>Submission Successful</h1>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
