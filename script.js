@@ -1,192 +1,217 @@
 const access="debug123"
 
-let editor
+let questions=[]
+let answers=["","",""]
+let current=0
 
-let questions=[
 
-{
-title:"Fix the Compilation Error",
+const questionBank=[
+
+{level:"easy",title:"Fix Compilation Error",
 code:`#include<iostream>
 using namespace std;
 
-int main()
-{
-int a = 5;
-int b = 3
-cout << a + b;
-return 0;
-}`,
+int main(){
+int a=5
+cout<<a;
+}`},
 
-answer:`#include<iostream>
+{level:"easy",title:"Fix Cout",
+code:`#include<iostream>
 using namespace std;
 
-int main()
-{
-int a = 5;
-int b = 3 ;
-cout << a + b;
+int main(){
+int a=5;
+cout a;
+}`},
+
+{level:"easy",title:"Fix Semicolon",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+int x=10
+cout<<x;
+}`},
+
+{level:"easy",title:"Fix Return",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+cout<<"Hello"
 return 0;
-}`
-}
+}`},
+
+{level:"easy",title:"Fix Variable",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+int a=5;
+int b=3
+cout<<a+b;
+}`},
+
+{level:"easy",title:"Fix Bracket",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+cout<<"Hello";
+`},
+
+{level:"moderate",title:"Fix Loop",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+for(int i=0;i<5;i++);
+cout<<i;
+}`},
+
+{level:"moderate",title:"Fix Condition",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+int a=5;
+if(a=5)
+cout<<"yes";
+}`},
+
+{level:"moderate",title:"Fix Array",
+code:`#include<iostream>
+using namespace std;
+
+int main(){
+int arr[3]={1,2,3};
+cout<<arr[3];
+}`}
 
 ]
 
-let current=0
-let answers=[]
-
-
-/* ACCESS */
 
 function verifyAccess(){
 
 let code=document.getElementById("accessCode").value
 
 if(code!==access){
-
 alert("Wrong Access Code")
 return
+}
+
+document.getElementById("accessPage").classList.add("hidden")
+document.getElementById("teamPage").classList.remove("hidden")
 
 }
 
-document.getElementById("accessPage").style.display="none"
-document.getElementById("teamPage").style.display="block"
 
-}
-
-
-/* START EXAM */
 
 function startExam(){
 
 let team=document.getElementById("teamName").value
 
-document.getElementById("teamPage").style.display="none"
-document.getElementById("examPage").style.display="block"
+document.getElementById("teamPage").classList.add("hidden")
+document.getElementById("examPage").classList.remove("hidden")
 
 document.getElementById("teamDisplay").innerText="Team: "+team
 
-loadEditor()
+let easy=questionBank.filter(q=>q.level==="easy")
+let moderate=questionBank.filter(q=>q.level==="moderate")
+
+shuffle(easy)
+shuffle(moderate)
+
+questions=[easy[0],easy[1],moderate[0]]
 
 showQuestion()
-
 startTimer()
 
 }
 
 
-/* MONACO EDITOR */
 
-function loadEditor(){
-
-require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
-
-require(["vs/editor/editor.main"], function () {
-
-editor = monaco.editor.create(document.getElementById('editor'), {
-
-value:"",
-language:"cpp",
-theme:"vs-dark",
-automaticLayout:true
-
-});
-
-});
-
+function shuffle(arr){
+for(let i=arr.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1))
+[arr[i],arr[j]]=[arr[j],arr[i]]
+}
 }
 
 
-/* SHOW QUESTION */
 
 function showQuestion(){
 
 let q=questions[current]
 
 document.getElementById("questionTitle").innerText=q.title
-
 document.getElementById("questionCode").innerText=q.code
+
+document.getElementById("codeEditor").value=answers[current]||""
+
+if(current===2){
+document.getElementById("submitArea").style.display="block"
+}else{
+document.getElementById("submitArea").style.display="none"
+}
 
 }
 
 
-/* RUN CODE */
+
+function saveCode(){
+answers[current]=document.getElementById("codeEditor").value
+alert("Saved")
+}
+
+
+
+function nextQuestion(){
+saveCode()
+if(current<2){
+current++
+showQuestion()
+}
+}
+
+
+
+function prevQuestion(){
+saveCode()
+if(current>0){
+current--
+showQuestion()
+}
+}
+
+
+
+/* SIMPLE RUN */
 
 function runCode(){
 
-let code=editor.getValue().trim()
+let code=document.getElementById("codeEditor").value
 
-if(code===""){
-
+if(code.trim()===""){
 document.getElementById("outputBox").innerText="Error: No code written"
-return
-
-}
-
-let correct=questions[current].answer.trim()
-
-if(code.replace(/\s/g,'')===correct.replace(/\s/g,'')){
-
-document.getElementById("outputBox").innerText="Program executed successfully\nOutput:\n8"
-
-}
-else{
-
-document.getElementById("outputBox").innerText="Compilation Error at line 5: expected ';'"
-
+}else{
+document.getElementById("outputBox").innerText="Code submitted for execution."
 }
 
 }
 
 
-/* SAVE */
-
-function saveCode(){
-
-answers[current]=editor.getValue()
-
-}
-
-
-/* NAVIGATION */
-
-function nextQuestion(){
-
-saveCode()
-
-if(current<questions.length-1){
-
-current++
-showQuestion()
-
-}
-
-}
-
-function prevQuestion(){
-
-saveCode()
-
-if(current>0){
-
-current--
-showQuestion()
-
-}
-
-}
-
-
-/* SUBMIT */
 
 function submitExam(){
 
-if(!confirm("Submit your solutions?")) return
+if(!confirm("Submit answers?")) return
 
 document.getElementById("examPage").style.display="none"
-
 document.getElementById("successPage").style.display="block"
 
 }
+
 
 
 /* TIMER */
@@ -204,8 +229,22 @@ document.getElementById("timer").innerText=m+":"+("0"+s).slice(-2)
 
 time--
 
-if(time<0) submitExam()
-
 },1000)
 
 }
+
+
+
+/* SECURITY */
+
+document.addEventListener("contextmenu",e=>e.preventDefault())
+document.addEventListener("copy",e=>e.preventDefault())
+document.addEventListener("paste",e=>e.preventDefault())
+
+document.addEventListener("visibilitychange",function(){
+
+if(document.hidden){
+alert("Tab switching detected!")
+}
+
+})
