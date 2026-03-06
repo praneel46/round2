@@ -3,123 +3,113 @@ margin:0;
 font-family:Consolas;
 background:#020617;
 color:white;
-overflow:hidden;
 }
 
-/* HACKATHON CARD */
+/* CARD */
 
-.centerCard{
-
-width:400px;
-margin:150px auto;
-padding:40px;
+.card{
+width:90%;
+max-width:420px;
+margin:120px auto;
+padding:35px;
 background:#0f172a;
-border-radius:12px;
+border-radius:10px;
 text-align:center;
-
-box-shadow:0 0 30px #00ff88;
-
-animation:float 4s infinite ease-in-out;
-
+box-shadow:0 0 20px #00ff88;
 }
 
-@keyframes float{
-
-0%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-100%{transform:translateY(0)}
-
+.hidden{
+display:none;
 }
 
-.glow{
-color:#00ff88;
-text-shadow:0 0 10px #00ff88;
-}
+/* INPUT */
 
 input{
-
 width:90%;
 padding:12px;
 margin:10px;
 border:none;
 border-radius:6px;
-
 }
 
-button{
+/* BUTTON */
 
+button{
 padding:10px 20px;
 border:none;
 border-radius:6px;
 background:#00ff88;
-cursor:pointer;
 font-weight:bold;
-
-}
-
-button:hover{
-
-box-shadow:0 0 20px #00ff88;
-
+cursor:pointer;
 }
 
 /* TOPBAR */
 
 .topbar{
-
 display:flex;
 justify-content:space-between;
 padding:15px;
-background:black;
-
+background:#0f172a;
 }
 
-#timer{
+/* CONTEST */
 
-color:#00ff88;
-font-size:20px;
-
+.contestContainer{
+display:flex;
+height:calc(100vh - 80px);
 }
 
 /* QUESTION */
 
-.questionBox{
-
-margin:20px;
+.questionPanel{
+width:40%;
 padding:20px;
 background:#0f172a;
-border-radius:10px;
-
+overflow:auto;
 }
 
 pre{
-
 background:#020617;
 padding:15px;
+border-radius:6px;
 color:#00ff88;
-
 }
 
-/* OUTPUT TERMINAL */
+/* COMPILER */
+
+.compilerPanel{
+width:60%;
+padding:20px;
+background:#111;
+display:flex;
+flex-direction:column;
+}
+
+#codeEditor{
+height:300px;
+background:#000;
+color:#00ff88;
+padding:10px;
+border:none;
+margin-top:10px;
+}
 
 #outputBox{
-
 background:black;
 color:#00ff00;
 padding:15px;
 margin-top:10px;
-border-radius:6px;
-
 }
 
-/* SUCCESS PAGE */
+/* NAV */
 
-#successPage{
+.navButtons{
+margin-top:20px;
+display:flex;
+gap:10px;
+}
 
+#submitArea{
+margin-top:20px;
 display:none;
-text-align:center;
-margin-top:200px;
-color:#00ff88;
-font-size:40px;
-
 }
