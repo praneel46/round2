@@ -1,37 +1,8 @@
 body{
 margin:0;
 background:#0f172a;
-font-family:Consolas;
 color:white;
-}
-
-.card{
-width:400px;
-margin:150px auto;
-padding:30px;
-background:#020617;
-border-radius:10px;
-text-align:center;
-}
-
-.hidden{
-display:none;
-}
-
-input{
-width:90%;
-padding:10px;
-margin:10px;
-border:none;
-border-radius:5px;
-}
-
-button{
-padding:10px 20px;
-background:#00ff88;
-border:none;
-border-radius:5px;
-cursor:pointer;
+font-family:Consolas;
 }
 
 .topbar{
@@ -39,47 +10,57 @@ display:flex;
 justify-content:space-between;
 padding:15px;
 background:#020617;
-border-bottom:2px solid #00ff88;
+border-bottom:2px solid #22c55e;
 }
 
-.main{
+.container{
 display:flex;
-height:calc(100vh - 70px);
+height:calc(100vh - 60px);
 }
 
-.leftPanel{
+.questionPanel{
 width:40%;
-padding:20px;
+padding:25px;
 background:#020617;
 overflow:auto;
 }
 
-.rightPanel{
+.compilerPanel{
 width:60%;
 padding:20px;
+background:#0f172a;
+display:flex;
+flex-direction:column;
 }
 
 #editor{
-height:420px;
-border:1px solid #00ff88;
+height:380px;
+border:2px solid #22c55e;
+margin-top:10px;
 }
 
-pre{
-background:black;
-padding:10px;
-color:#00ff88;
-}
-
-.nav{
+.buttons{
 margin-top:20px;
 display:flex;
 gap:10px;
 }
 
-#successPage{
-display:none;
-text-align:center;
-margin-top:200px;
-font-size:40px;
-color:#00ff88;
+button{
+padding:10px 20px;
+background:#22c55e;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.runBtn{
+margin-top:10px;
+width:120px;
+}
+
+pre{
+background:black;
+padding:10px;
+margin-top:10px;
+color:#22c55e;
 }
