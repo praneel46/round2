@@ -1,22 +1,17 @@
 body{
 margin:0;
+background:#0f172a;
 font-family:Consolas;
 color:white;
-background:#020617;
 }
 
 .card{
-width:420px;
+width:400px;
 margin:150px auto;
 padding:30px;
-background:#0f172a;
+background:#020617;
 border-radius:10px;
 text-align:center;
-box-shadow:0 0 20px #00ff88;
-}
-
-.title{
-color:#00ff88;
 }
 
 .hidden{
@@ -43,35 +38,29 @@ cursor:pointer;
 display:flex;
 justify-content:space-between;
 padding:15px;
-background:#0f172a;
+background:#020617;
 border-bottom:2px solid #00ff88;
 }
 
-#timer{
-color:#00ff88;
-font-weight:bold;
-}
-
-.contestContainer{
+.main{
 display:flex;
-height:calc(100vh - 80px);
+height:calc(100vh - 70px);
 }
 
-.questionPanel{
-width:35%;
-padding:20px;
-background:#0f172a;
-border-right:2px solid black;
-}
-
-.compilerPanel{
-width:65%;
+.leftPanel{
+width:40%;
 padding:20px;
 background:#020617;
+overflow:auto;
+}
+
+.rightPanel{
+width:60%;
+padding:20px;
 }
 
 #editor{
-height:400px;
+height:420px;
 border:1px solid #00ff88;
 }
 
@@ -81,21 +70,16 @@ padding:10px;
 color:#00ff88;
 }
 
-.navButtons{
+.nav{
 margin-top:20px;
 display:flex;
 gap:10px;
 }
 
-#submitArea{
-margin-top:20px;
-display:none;
-}
-
 #successPage{
+display:none;
 text-align:center;
 margin-top:200px;
 font-size:40px;
 color:#00ff88;
-display:none;
 }
