@@ -2,9 +2,9 @@
 <html>
 <head>
 <title>Debugging Challenge</title>
+
 <link rel="stylesheet" href="style.css">
 
-<!-- MONACO EDITOR -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
 
 </head>
@@ -14,11 +14,11 @@
 <!-- ACCESS PAGE -->
 <div id="accessPage" class="card">
 
-<h1 class="title">DEBUGGING CHALLENGE</h1>
+<h1>Debugging Challenge</h1>
 
-<input type="password" id="accessCode" placeholder="Enter Access Code">
+<input type="password" id="accessCode" placeholder="Access Code">
 
-<button onclick="verifyAccess()">ENTER</button>
+<button onclick="verifyAccess()">Enter</button>
 
 </div>
 
@@ -28,15 +28,15 @@
 
 <h2>Enter Team Name</h2>
 
-<input type="text" id="teamName" placeholder="Team Name">
+<input type="text" id="teamName">
 
-<button onclick="startExam()">Start Contest</button>
+<button onclick="startContest()">Start</button>
 
 </div>
 
 
-<!-- EXAM PAGE -->
-<div id="examPage" class="hidden">
+<!-- CONTEST PAGE -->
+<div id="contestPage" class="hidden">
 
 <div class="topbar">
 
@@ -47,45 +47,41 @@
 </div>
 
 
-<div class="contestContainer">
+<div class="main">
 
+<!-- QUESTION SIDE -->
+<div class="leftPanel">
 
-<!-- QUESTION PANEL -->
-<div class="questionPanel">
+<h2 id="qTitle"></h2>
 
-<h2 id="questionTitle"></h2>
+<p id="qDesc"></p>
 
-<p id="questionStatement"></p>
+<pre id="qCode"></pre>
 
-<pre id="questionCode"></pre>
+<div class="nav">
 
-<div class="navButtons">
+<button onclick="prevQ()">Previous</button>
 
-<button onclick="prevQuestion()">Previous</button>
-
-<button onclick="nextQuestion()">Next</button>
+<button onclick="nextQ()">Next</button>
 
 <button onclick="saveCode()">Save</button>
 
 </div>
 
-<div id="submitArea">
-
-<button onclick="submitExam()">Submit</button>
-
-</div>
+<button id="submitBtn" onclick="submitContest()">Submit</button>
 
 </div>
 
 
-
-<!-- COMPILER PANEL -->
-<div class="compilerPanel">
+<!-- COMPILER SIDE -->
+<div class="rightPanel">
 
 <select id="language">
 
-<option value="c">C</option>
 <option value="cpp">C++</option>
+
+<option value="c">C</option>
+
 <option value="python">Python</option>
 
 </select>
