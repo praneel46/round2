@@ -1,72 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Debugging Challenge</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
 
 </head>
 
 <body>
 
+<!-- ACCESS PAGE -->
+
+<div id="accessPage" class="centerCard">
+
+<h1 class="glow">DEBUGGING CHALLENGE</h1>
+
+<input type="password" id="accessCode" placeholder="Enter Access Code">
+
+<button onclick="verifyAccess()">ENTER</button>
+
+</div>
+
+
+<!-- TEAM PAGE -->
+
+<div id="teamPage" class="centerCard" style="display:none">
+
+<h2>Enter Team Name</h2>
+
+<input type="text" id="teamName" placeholder="Team Name">
+
+<button onclick="startExam()">Start Contest</button>
+
+</div>
+
+
+<!-- EXAM PAGE -->
+
+<div id="examPage">
+
 <div class="topbar">
 
-<div id="teamDisplay">Team</div>
+<div id="teamDisplay"></div>
+
 <div id="timer">60:00</div>
 
 </div>
 
 
-<div class="container">
+<div class="questionBox">
 
-<!-- LEFT QUESTION PANEL -->
+<h2 id="questionTitle"></h2>
 
-<div class="questionPanel">
-
-<h2 id="qTitle">Question Title</h2>
-
-<p id="qDesc">
-Question description will appear here.
-</p>
-
-<pre id="qCode">
-Buggy code will appear here
-</pre>
-
-<div class="buttons">
-
-<button onclick="prevQ()">Previous</button>
-<button onclick="nextQ()">Next</button>
-<button onclick="saveCode()">Save</button>
-<button onclick="submitContest()">Submit</button>
-
-</div>
-
-</div>
-
-
-<!-- RIGHT COMPILER PANEL -->
-
-<div class="compilerPanel">
+<pre id="questionCode"></pre>
 
 <select id="language">
 <option value="cpp">C++</option>
 <option value="c">C</option>
 <option value="python">Python</option>
+<option value="java">Java</option>
 </select>
 
-<div id="editor"></div>
+<div id="editor" style="height:350px;"></div>
 
-<button class="runBtn" onclick="runCode()">Run Code</button>
+<button id="runBtn" onclick="runCode()">Run Code</button>
 
-<pre id="output"></pre>
+<div id="outputBox">Terminal Output</div>
+
+</div>
+
+
+<div class="navButtons">
+
+<button onclick="prevQuestion()">Previous</button>
+
+<button onclick="saveCode()">Save</button>
+
+<button onclick="nextQuestion()">Next</button>
+
+</div>
+
+
+<div id="submitArea">
+
+<button onclick="submitExam()">Submit</button>
 
 </div>
 
 </div>
+
+
+<div id="successPage">
+
+<h1>Submission Successful</h1>
+
+</div>
+
 
 <script src="script.js"></script>
 
