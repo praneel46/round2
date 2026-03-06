@@ -120,3 +120,7 @@ initEditor()
 showQuestion()
 
 }
+window.addEventListener("load", function() {
+    initEditor();
+    showQuestion();
+});
