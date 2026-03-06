@@ -1,66 +1,125 @@
 body{
 margin:0;
-background:#0f172a;
-color:white;
 font-family:Consolas;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-padding:15px;
 background:#020617;
-border-bottom:2px solid #22c55e;
+color:white;
+overflow:hidden;
 }
 
-.container{
-display:flex;
-height:calc(100vh - 60px);
-}
+/* HACKATHON CARD */
 
-.questionPanel{
-width:40%;
-padding:25px;
-background:#020617;
-overflow:auto;
-}
+.centerCard{
 
-.compilerPanel{
-width:60%;
-padding:20px;
+width:400px;
+margin:150px auto;
+padding:40px;
 background:#0f172a;
-display:flex;
-flex-direction:column;
+border-radius:12px;
+text-align:center;
+
+box-shadow:0 0 30px #00ff88;
+
+animation:float 4s infinite ease-in-out;
+
 }
 
-#editor{
-height:380px;
-border:2px solid #22c55e;
-margin-top:10px;
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+
 }
 
-.buttons{
-margin-top:20px;
-display:flex;
-gap:10px;
+.glow{
+color:#00ff88;
+text-shadow:0 0 10px #00ff88;
+}
+
+input{
+
+width:90%;
+padding:12px;
+margin:10px;
+border:none;
+border-radius:6px;
+
 }
 
 button{
+
 padding:10px 20px;
-background:#22c55e;
 border:none;
 border-radius:6px;
+background:#00ff88;
 cursor:pointer;
+font-weight:bold;
+
 }
 
-.runBtn{
-margin-top:10px;
-width:120px;
+button:hover{
+
+box-shadow:0 0 20px #00ff88;
+
+}
+
+/* TOPBAR */
+
+.topbar{
+
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:black;
+
+}
+
+#timer{
+
+color:#00ff88;
+font-size:20px;
+
+}
+
+/* QUESTION */
+
+.questionBox{
+
+margin:20px;
+padding:20px;
+background:#0f172a;
+border-radius:10px;
+
 }
 
 pre{
+
+background:#020617;
+padding:15px;
+color:#00ff88;
+
+}
+
+/* OUTPUT TERMINAL */
+
+#outputBox{
+
 background:black;
-padding:10px;
+color:#00ff00;
+padding:15px;
 margin-top:10px;
-color:#22c55e;
+border-radius:6px;
+
+}
+
+/* SUCCESS PAGE */
+
+#successPage{
+
+display:none;
+text-align:center;
+margin-top:200px;
+color:#00ff88;
+font-size:40px;
+
 }
