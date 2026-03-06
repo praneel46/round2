@@ -1,232 +1,101 @@
 body{
 margin:0;
-font-family:Consolas,monospace;
+font-family:Consolas;
 color:white;
-
-/* animated background */
-
-background:linear-gradient(270deg,#020617,#0f172a,#020617);
-background-size:400% 400%;
-animation:bgMove 12s infinite;
-
+background:#020617;
 }
-
-@keyframes bgMove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
-/* CARD */
 
 .card{
-
-width:90%;
-max-width:420px;
-
-margin:120px auto;
-
-padding:35px;
-
+width:420px;
+margin:150px auto;
+padding:30px;
 background:#0f172a;
-
-border-radius:12px;
-
+border-radius:10px;
 text-align:center;
-
-box-shadow:0 0 25px #00ff88;
-
+box-shadow:0 0 20px #00ff88;
 }
-
-/* TITLE */
 
 .title{
-
 color:#00ff88;
-letter-spacing:2px;
-
 }
-
-/* HIDDEN */
 
 .hidden{
 display:none;
 }
 
-/* INPUT */
-
 input{
-
 width:90%;
-
-padding:12px;
-
-margin:10px 0;
-
+padding:10px;
+margin:10px;
 border:none;
-
-border-radius:6px;
-
+border-radius:5px;
 }
-
-/* BUTTON */
 
 button{
-
 padding:10px 20px;
-
-border:none;
-
-border-radius:6px;
-
 background:#00ff88;
-
-font-weight:bold;
-
+border:none;
+border-radius:5px;
 cursor:pointer;
-
-transition:0.3s;
-
 }
-
-button:hover{
-
-box-shadow:0 0 12px #00ff88;
-
-}
-
-/* TOPBAR */
 
 .topbar{
-
 display:flex;
-
 justify-content:space-between;
-
 padding:15px;
-
 background:#0f172a;
-
 border-bottom:2px solid #00ff88;
-
 }
-
-/* TIMER */
 
 #timer{
-
-font-size:20px;
-
 color:#00ff88;
-
 font-weight:bold;
-
 }
-
-/* CONTEST LAYOUT */
 
 .contestContainer{
-
 display:flex;
-
 height:calc(100vh - 80px);
-
 }
-
-/* QUESTION PANEL */
 
 .questionPanel{
-
-width:40%;
-
+width:35%;
 padding:20px;
-
 background:#0f172a;
-
-overflow-y:auto;
-
-border-right:2px solid #020617;
-
+border-right:2px solid black;
 }
 
-/* CODE BLOCK */
+.compilerPanel{
+width:65%;
+padding:20px;
+background:#020617;
+}
+
+#editor{
+height:400px;
+border:1px solid #00ff88;
+}
 
 pre{
-
-background:#020617;
-
-padding:15px;
-
-border-radius:6px;
-
-color:#00ff88;
-
-}
-
-/* COMPILER */
-
-.compilerPanel{
-
-width:60%;
-
 background:black;
-
+padding:10px;
+color:#00ff88;
 }
-
-/* NAV */
 
 .navButtons{
-
 margin-top:20px;
-
 display:flex;
-
 gap:10px;
-
 }
-
-/* SUBMIT */
 
 #submitArea{
-
 margin-top:20px;
-
 display:none;
-
 }
-
-/* SUCCESS PAGE */
 
 #successPage{
-
-display:none;
-
 text-align:center;
-
 margin-top:200px;
-
 font-size:40px;
-
 color:#00ff88;
-
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.contestContainer{
-flex-direction:column;
-}
-
-.questionPanel{
-width:100%;
-border-right:none;
-border-bottom:2px solid #020617;
-}
-
-.compilerPanel{
-width:100%;
-}
-
+display:none;
 }
