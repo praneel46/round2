@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Debugging Challenge</title>
 
 <link rel="stylesheet" href="style.css">
@@ -11,98 +12,59 @@
 
 <body>
 
-<!-- ACCESS PAGE -->
-<div id="accessPage" class="card">
-
-<h1>Debugging Challenge</h1>
-
-<input type="password" id="accessCode" placeholder="Access Code">
-
-<button onclick="verifyAccess()">Enter</button>
-
-</div>
-
-
-<!-- TEAM PAGE -->
-<div id="teamPage" class="card hidden">
-
-<h2>Enter Team Name</h2>
-
-<input type="text" id="teamName">
-
-<button onclick="startContest()">Start</button>
-
-</div>
-
-
-<!-- CONTEST PAGE -->
-<div id="contestPage" class="hidden">
-
 <div class="topbar">
 
-<div id="teamDisplay"></div>
-
+<div id="teamDisplay">Team</div>
 <div id="timer">60:00</div>
 
 </div>
 
 
-<div class="main">
+<div class="container">
 
-<!-- QUESTION SIDE -->
-<div class="leftPanel">
+<!-- LEFT QUESTION PANEL -->
 
-<h2 id="qTitle"></h2>
+<div class="questionPanel">
 
-<p id="qDesc"></p>
+<h2 id="qTitle">Question Title</h2>
 
-<pre id="qCode"></pre>
+<p id="qDesc">
+Question description will appear here.
+</p>
 
-<div class="nav">
+<pre id="qCode">
+Buggy code will appear here
+</pre>
+
+<div class="buttons">
 
 <button onclick="prevQ()">Previous</button>
-
 <button onclick="nextQ()">Next</button>
-
 <button onclick="saveCode()">Save</button>
+<button onclick="submitContest()">Submit</button>
 
 </div>
 
-<button id="submitBtn" onclick="submitContest()">Submit</button>
-
 </div>
 
 
-<!-- COMPILER SIDE -->
-<div class="rightPanel">
+<!-- RIGHT COMPILER PANEL -->
+
+<div class="compilerPanel">
 
 <select id="language">
-
 <option value="cpp">C++</option>
-
 <option value="c">C</option>
-
 <option value="python">Python</option>
-
 </select>
 
 <div id="editor"></div>
 
-<button onclick="runCode()">Run Code</button>
+<button class="runBtn" onclick="runCode()">Run Code</button>
 
 <pre id="output"></pre>
 
 </div>
-
-
-</div>
-
-</div>
-
-
-<div id="successPage">
-
-<h1>Submission Successful</h1>
 
 </div>
 
